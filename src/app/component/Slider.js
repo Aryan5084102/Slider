@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { IoSearch } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
@@ -14,7 +14,22 @@ import { Autoplay } from 'swiper/modules';
 import { slides } from '../data/data';
 
 const Slider = () => {
-    const numbers = "1439380".split("");
+  const initialNumbers = "1439380".split("");
+  const [currentNumbers, setCurrentNumbers] = useState(initialNumbers)
+
+  useEffect(()=>{
+    const updateNumbers = () =>{
+      const newNumbers = currentNumbers.map((num) =>{
+        const increment = Math.floor(Math.random() * 3)
+        return (parseInt(num) + increment) % 10
+      })
+      setCurrentNumbers(newNumbers)
+    }
+    const interval = setInterval(updateNumbers, 3000)
+    return () => clearInterval(interval)
+
+  }, [currentNumbers]);
+
 
     return (
     <div className="w-full min-h-screen">
@@ -36,7 +51,7 @@ const Slider = () => {
             <div className="w-full md:w-1/2 px-4 md:px-8">
               <div className="flex relative items-center mb-6">
                 <div className="flex space-x-2">
-                  {numbers.map((num, idx) => (
+                  {currentNumbers.map((num, idx) => (
                     <div
                       key={idx}
                       className="flex items-center justify-center w-7 h-8 bg-white rounded-lg shadow-2xl text-sm md:text-lg font-bold text-[#0c2d50]"
