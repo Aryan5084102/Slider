@@ -105,15 +105,13 @@ const Slider = () => {
               </div>
 
               {/* Right Image */}
-              <div className="w-full md:w-auto flex justify-center sm:justify-center items-center">
                 <Image
                   src={slide.imageUrl}
                   width={400}
                   height={250}
-                  className="rounded-lg "
+                  className="rounded-lg sm:mx-auto md:w-auto "
                   alt="Error"
                 />
-              </div>
             </div>
           </SwiperSlide>
         ))}
