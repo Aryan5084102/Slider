@@ -17,17 +17,18 @@ const Slider = () => {
   const initialNumbers = "1439380".split("");
   const [currentNumbers, setCurrentNumbers] = useState(initialNumbers);
 
-  useEffect(() => {
-    const updateNumbers = () => {
-      const newNumbers = currentNumbers.map((num) => {
-        const increment = Math.floor(Math.random() * 3);
-        return (parseInt(num) + increment) % 10;
+  useEffect(() =>{
+    const updateNumbers = () =>{
+      const newNumbers = currentNumbers.map((num) =>{
+        const increment = Math.floor(Math.random() * 3)
+        return (increment + parseInt(num)) % 10;
       });
       setCurrentNumbers(newNumbers);
     };
-    const interval = setInterval(updateNumbers, 3000);
-    return () => clearInterval(interval);
-  }, [currentNumbers]);
+
+    const interval = setInterval(updateNumbers, 3000)
+    return () => clearInterval(interval)
+  }, [currentNumbers])
 
   return (
     <div className="w-full min-h-screen">
